@@ -2,7 +2,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Users, Settings, LayoutDashboard, FileText, BarChart2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, Users, Settings, LayoutDashboard, FileText, BarChart2, ChartColumnDecreasing } from 'lucide-react';
 
 export default function AdminSidebar() {
   const [open, setOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function AdminSidebar() {
           <FileText className="w-4 h-4" /> Reports
         </Link>
         <Link href="/dashboard/admin/analytics" className="flex items-center gap-2 px-3 py-2 rounded hover:bg-accent/30 transition">
-          <BarChart2 className="w-4 h-4" /> Analytics
+          <ChartColumnDecreasing className="w-4 h-4" /> Analytics
         </Link>
         {/* Dropdown Example */}
         <div>
