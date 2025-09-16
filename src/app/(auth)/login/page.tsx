@@ -35,7 +35,7 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
       <section className="w-full max-w-md bg-card border border-border rounded-xl p-8 shadow">
-        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Sign in to EMSxpert</h2>
+        <h2 className="text-2xl font-bold text-primary mb-6 text-center">Sign in to <span className="text-blue-500">EMSxpert</span></h2>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <FormField
