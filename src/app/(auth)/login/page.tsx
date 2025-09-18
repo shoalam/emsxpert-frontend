@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -17,6 +18,8 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -30,6 +33,7 @@ export default function LoginPage() {
     setLoading(true);
     // Add your login logic here
     setTimeout(() => setLoading(false), 1500);
+    router.push("/dashboard/employee"); // Replace with your dashboard route .
   }
 
   return (

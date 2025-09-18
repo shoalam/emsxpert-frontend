@@ -14,8 +14,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function AdminProfileDropdown() {
-  const avatarUrl = "/assets/img/github.png"; // Replace with actual avatar URL or user data
-
   const router = useRouter();
   const handleLogout = () => {
     // Implement logout functionality here

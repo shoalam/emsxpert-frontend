@@ -105,7 +105,7 @@ const employees: Employee[] = Array.from({ length: 100 }, (_, i) => ({
 
 export default function EmployeesPage() {
   return (
-    <div className="p-6">
+    <div className="">
       <h1 className="text-2xl font-bold mb-6 text-primary">Employees</h1>
       <DataTable columns={columns} data={employees} totalCount={employees.length} pageSize={10} />
     </div>
