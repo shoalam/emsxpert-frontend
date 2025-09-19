@@ -1,6 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* 
+Primary: #2563EB (Blue 600)
+
+Secondary: #0D9488 (Teal 600)
+
+Accent: #F59E0B (Amber 500)
+
+Background: #F9FAFB (Gray 50)
+
+Text: #1F2937 (Gray 800)
+
+*/
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
