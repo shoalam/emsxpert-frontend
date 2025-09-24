@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/contexts/AuthProviders";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EMSXpert - Employee Management System for Simplifying Workforce Management",
-  description: "EMSXpert is a powerful and intuitive Employee Management System designed to streamline workforce operations, enhance productivity, and simplify HR tasks — all from a single, centralized platform.",
+  title:
+    "EMSXpert - Employee Management System for Simplifying Workforce Management",
+  description:
+    "EMSXpert is a powerful and intuitive Employee Management System designed to streamline workforce operations, enhance productivity, and simplify HR tasks — all from a single, centralized platform.",
 };
 
 export default function RootLayout({
@@ -27,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

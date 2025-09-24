@@ -12,11 +12,13 @@ import { ChevronDown, LogOut, Settings, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 export default function AdminProfileDropdown() {
   const router = useRouter();
   const handleLogout = () => {
     // Implement logout functionality here
+    Cookies.remove('accessToken');
     router.push('/login'); // Redirect to login page after logout
   }
   return (

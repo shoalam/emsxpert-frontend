@@ -16,6 +16,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Kanban, SquareKanban, UserRoundCog } from "lucide-react";
+import { login } from "@/lib/api";
+import { LoginResponse } from "@/types/auth";
+import Cookies from "js-cookie";
 
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -37,12 +40,34 @@ export default function LoginPage() {
     },
   });
 
-  function onSubmit(data: LoginFormValues) {
+  async function onSubmit(values: LoginFormValues) {
+    const { email, password } = values;
     setLoading(true);
-    // Add your login logic here
-    setTimeout(() => setLoading(false), 1500);
-    router.push("/dashboard/employee"); // Replace with your dashboard route .
+    try {
+      const res: LoginResponse = await login( email, password );
+      // login() already set the in-memory access token and the server set refresh cookie
+      // Optionally you can store user info from data.user in your AuthProvider or context
+      console.log("Login response:", res);
+      if(res){
+        alert(res.message || "Login successful");
+        Cookies.set("accessToken", res?.accessToken as string, { expires: 1 });
+        if(res?.user?.role === "admin"){
+          router.push("/dashboard/admin");
+        } else if(res?.user?.role === "manager"){
+          router.push("/dashboard/manager");
+        } else if(res?.user?.role === "employee"){
+          router.push("/dashboard/employee");
+        }
+      }
+    } catch (err: any) {
+      // parse and show a friendly message
+      const serverMsg = err?.body?.message || err?.message || "Login failed";
+      alert(serverMsg);
+    } finally {
+      setLoading(false);
+    }
   }
+
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-background text-foreground">
